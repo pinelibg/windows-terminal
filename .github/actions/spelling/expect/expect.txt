@@ -188,8 +188,10 @@ changelist
 chaof
 charinfo
 CHARSETINFO
+chcbpat
 chh
 chk
+chshdng
 CHT
 Cic
 cielab
@@ -301,6 +303,7 @@ coordnew
 COPYCOLOR
 CORESYSTEM
 cotaskmem
+countof
 CPG
 cpinfo
 CPINFOEX
@@ -341,6 +344,7 @@ CTRLVOLUME
 Ctxt
 CUF
 cupxy
+curlyline
 CURRENTFONT
 currentmode
 CURRENTPAGE
@@ -576,6 +580,7 @@ elems
 emacs
 EMPTYBOX
 enabledelayedexpansion
+ENDCAP
 endptr
 endregion
 ENTIREBUFFER
@@ -749,7 +754,6 @@ gfx
 GGI
 GHIJK
 GHIJKL
-GHIJKLM
 gitfilters
 gitmodules
 gle
@@ -825,6 +829,7 @@ hostlib
 HPA
 hpcon
 HPCON
+hpen
 hpj
 HPR
 HProvider
@@ -1000,7 +1005,6 @@ listptrsize
 lld
 llx
 LMENU
-LMNOP
 lnk
 lnkd
 lnkfile
@@ -1010,6 +1014,7 @@ LOBYTE
 localappdata
 locsrc
 Loewen
+LOGBRUSH
 LOGFONT
 LOGFONTA
 LOGFONTW
@@ -1223,7 +1228,6 @@ nonspace
 NOOWNERZORDER
 Nop
 NOPAINT
-NOPQRST
 noprofile
 NOREDRAW
 NOREMOVE
@@ -1498,7 +1502,6 @@ pwsz
 pythonw
 Qaabbcc
 qos
-QRSTU
 QUERYOPEN
 QUESTIONMARK
 quickedit
@@ -1591,7 +1594,6 @@ RIGHTALIGN
 RIGHTBUTTON
 riid
 Rike
-RIPMSG
 RIS
 roadmap
 robomac
@@ -1777,6 +1779,7 @@ stdafx
 STDAPI
 stdc
 stdcpp
+STDEXT
 STDMETHODCALLTYPE
 STDMETHODIMP
 STGM
@@ -1861,7 +1864,6 @@ testname
 TESTNULL
 testpass
 testpasses
-testtimeout
 TEXCOORD
 texel
 TExpected
@@ -2019,7 +2021,6 @@ utext
 UText
 UTEXT
 utr
-UVWX
 UVWXY
 UVWXYZ
 uwa
@@ -2078,7 +2079,6 @@ VTRGBTo
 vtseq
 vtterm
 vttest
-VWX
 waitable
 WANSUNG
 WANTARROWS
@@ -2274,6 +2274,7 @@ YCast
 YCENTER
 YCount
 YDPI
+YLimit
 YOffset
 YSubstantial
 YVIRTUALSCREEN

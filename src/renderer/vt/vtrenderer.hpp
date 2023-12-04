@@ -62,7 +62,7 @@ namespace Microsoft::Console::Render
         [[nodiscard]] HRESULT PrepareLineTransform(const LineRendition lineRendition, const til::CoordType targetRow, const til::CoordType viewportLeft) noexcept override;
         [[nodiscard]] HRESULT PaintBackground() noexcept override;
         [[nodiscard]] HRESULT PaintBufferLine(std::span<const Cluster> clusters, til::point coord, bool fTrimLeft, bool lineWrapped) noexcept override;
-        [[nodiscard]] HRESULT PaintBufferGridLines(GridLineSet lines, COLORREF color, size_t cchLine, til::point coordTarget) noexcept override;
+        [[nodiscard]] HRESULT PaintBufferGridLines(const GridLineSet lines, const COLORREF gridlineColor, const COLORREF underlineColor, const size_t cchLine, const til::point coordTarget) noexcept override;
         [[nodiscard]] HRESULT PaintSelection(const til::rect& rect) noexcept override;
         [[nodiscard]] HRESULT PaintCursor(const CursorOptions& options) noexcept override;
         [[nodiscard]] HRESULT UpdateFont(const FontInfoDesired& FontInfoDesired, _Out_ FontInfo& FontInfo) noexcept override;
@@ -90,6 +90,8 @@ namespace Microsoft::Console::Render
         [[nodiscard]] HRESULT RequestWin32Input() noexcept;
         [[nodiscard]] virtual HRESULT SetWindowVisibility(const bool showOrHide) noexcept = 0;
         [[nodiscard]] HRESULT SwitchScreenBuffer(const bool useAltBuffer) noexcept;
+        [[nodiscard]] HRESULT RequestMouseMode(bool enable) noexcept;
+        void Cork(bool corked) noexcept;
 
     protected:
         wil::unique_hfile _hFile;
@@ -127,11 +129,9 @@ namespace Microsoft::Console::Render
         bool _newBottomLine;
         til::point _deferredCursorPos;
 
-        HRESULT _exitResult;
         Microsoft::Console::VirtualTerminal::VtIo* _terminalOwner;
 
         Microsoft::Console::VirtualTerminal::RenderTracing _trace;
-        bool _inResizeRequest{ false };
 
         std::optional<til::CoordType> _wrappedRow{ std::nullopt };
 
@@ -139,12 +139,13 @@ namespace Microsoft::Console::Render
 
         bool _resizeQuirk{ false };
         bool _passthrough{ false };
-        bool _noFlushOnEnd{ false };
+        bool _corked{ false };
         std::optional<TextColor> _newBottomLineBG{ std::nullopt };
 
         [[nodiscard]] HRESULT _WriteFill(const size_t n, const char c) noexcept;
         [[nodiscard]] HRESULT _Write(std::string_view const str) noexcept;
-        [[nodiscard]] HRESULT _Flush() noexcept;
+        void _Flush() noexcept;
+        void _flushImpl() noexcept;
 
         template<typename S, typename... Args>
         [[nodiscard]] HRESULT _WriteFormatted(S&& format, Args&&... args)
